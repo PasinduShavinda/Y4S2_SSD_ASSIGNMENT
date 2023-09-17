@@ -5,7 +5,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import { useNavigate } from "react-router-dom";
 
-const API_URL = 'https://af-test-deploy-app.herokuapp.com';
+const API_URL = 'http://localhost:5001';
 
 const MarkingSchemeHome = (props) => {
   const history = useNavigate();

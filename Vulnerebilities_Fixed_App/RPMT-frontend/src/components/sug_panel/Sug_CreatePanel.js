@@ -42,7 +42,7 @@ const Sug_CreatePanel = () => {
         swal("Invalid Panel Member Name !", "Name cannot contain numbers ! Please enter valid name !", "error");
       }
       else{ await axios
-        .post("https://af-test-deploy-app.herokuapp.com/panelcreate", {
+        .post("http://localhost:5001/panelcreate", {
           panelID: String(inputs.panelID),
           panelmember1: String(inputs.panelmember1),
           panelmember2: String(inputs.panelmember2),

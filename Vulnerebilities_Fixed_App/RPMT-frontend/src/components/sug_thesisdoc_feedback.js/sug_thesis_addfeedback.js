@@ -14,7 +14,7 @@ const Sug_Thesisdoc_addfeedback = () => {
     useEffect(() => {
     const fetchHandler = async () => {
       await axios
-        .get(`https://af-test-deploy-app.herokuapp.com/thesisdoc_feedback/${id}`)
+        .get(`http://localhost:5001/thesisdoc_feedback/${id}`)
         .then((res) => res.data)
         .then(data=>setInputs(data.thesis))
            
@@ -31,7 +31,7 @@ const Sug_Thesisdoc_addfeedback = () => {
       };
       const sendRequest = async () => {
         await axios
-          .post("https://af-test-deploy-app.herokuapp.com/thesisdoc_feedback2", {
+          .post("http://localhost:5001/thesisdoc_feedback2", {
             ResThesisFileGroupId: String(inputs. ResThesisFileGroupId),
             ResThesisFileSupervisor: String(inputs.ResThesisFileSupervisor),
             Feedback: String(inputs.Feedback),

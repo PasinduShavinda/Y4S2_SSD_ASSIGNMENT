@@ -22,7 +22,7 @@ const UD_SupervisorLogin = () => {
     };
 
     axios
-      .post("https://af-test-deploy-app.herokuapp.com/super/supervisorlogin", supervisor)
+      .post("http://localhost:5001/super/supervisorlogin", supervisor)
       .then((res) => {
         if (res.data.message === "success") {
           var currentUser = res.data.data;

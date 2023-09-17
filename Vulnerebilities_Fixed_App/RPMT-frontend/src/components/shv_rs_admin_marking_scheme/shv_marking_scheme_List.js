@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import download from 'downloadjs';
 import axios from 'axios';
-const API_URL = 'https://af-test-deploy-app.herokuapp.com';
+const API_URL = 'http://localhost:5001';
 
 const MarkingSchemeList = () => {
   const [filesList, setFilesList] = useState([]);

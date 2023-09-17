@@ -20,7 +20,7 @@ const Shv_rs_topic_details = () => {
   useEffect(() => {
     const fetchHandler = async () => {
       await axios
-        .get(`https://af-test-deploy-app.herokuapp.com/resTopics/${id}`)
+        .get(`http://localhost:5001/resTopics/${id}`)
         .then((res) => res.data)
         .then((data) => setInputs(data.resTopics));
     };
@@ -37,7 +37,7 @@ const Shv_rs_topic_details = () => {
       swal("Invalid Supervisor Name !", "Name cannot contain numbers ! Please enter valid name !", "error");
     }else{
     await axios
-      .put(`https://af-test-deploy-app.herokuapp.com/resTopics/${id}`, {
+      .put(`http://localhost:5001/resTopics/${id}`, {
         ResTopicgroupId: String(inputs.ResTopicgroupId),
         ResTopicsupervisor: String(inputs.ResTopicsupervisor),
         ResTopicresearchArea: String(inputs.ResTopicresearchArea),

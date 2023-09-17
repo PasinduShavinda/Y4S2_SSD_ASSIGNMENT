@@ -31,7 +31,7 @@ const UD_SuperSignup = () => {
     };
 
     axios
-      .post("https://af-test-deploy-app.herokuapp.com/super/supervisorregister", supervisorData)
+      .post("http://localhost:5001/super/supervisorregister", supervisorData)
       .then((res) => {
         if (res.data.message === "success") {
           // var currentUser = res.data.data;

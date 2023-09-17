@@ -37,7 +37,7 @@ const UD_StudentReport = (props) => {
   //retrieving data from the database---------------------------------
   useEffect(() => {
     axios
-      .get("https://af-test-deploy-app.herokuapp.com/super/supervisor${props.ID}")
+      .get("http://localhost:5001/super/supervisor${props.ID}")
       .then((res) => {
         setSupervisors(res.data.data);
       });

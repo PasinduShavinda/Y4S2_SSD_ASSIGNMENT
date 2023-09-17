@@ -1,7 +1,7 @@
 import React ,{ useEffect, useState }from 'react'
 import axios from "axios"
 import Sug_student_topicdoc_feedback from "./sug_topicdoc_feedbacks";
-const URL = `https://af-test-deploy-app.herokuapp.com/topicdoc_feedback2`;
+const URL = `http://localhost:5001/topicdoc_feedback2`;
 
 
 const  Sug_student_AllTopicdocfeedbacks= () => {

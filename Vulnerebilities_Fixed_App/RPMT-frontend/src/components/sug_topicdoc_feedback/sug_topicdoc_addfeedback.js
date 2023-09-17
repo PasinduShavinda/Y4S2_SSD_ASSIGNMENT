@@ -14,7 +14,7 @@ const Sug_Topicdoc_addfeedback = () => {
     useEffect(() => {
     const fetchHandler = async () => {
       await axios
-        .get(`https://af-test-deploy-app.herokuapp.com/topicdoc_feedback/${id}`)
+        .get(`http://localhost:5001/topicdoc_feedback/${id}`)
         .then((res) => res.data)
         .then(data=>setInputs(data.topic))
            
@@ -37,7 +37,7 @@ const Sug_Topicdoc_addfeedback = () => {
           
   
         }else{await axios
-          .post("https://af-test-deploy-app.herokuapp.com/topicdoc_feedback2", {
+          .post("http://localhost:5001/topicdoc_feedback2", {
             ResTopicFileGroupId: String(inputs.ResTopicFileGroupId),
             ResTopicFilePanel: String(inputs.ResTopicFilePanel),
             Feedback: String(inputs.Feedback),

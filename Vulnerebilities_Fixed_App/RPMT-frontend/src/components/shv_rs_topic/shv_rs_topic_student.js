@@ -28,7 +28,7 @@ const Shv_rs_topic = (props) => {
     .then((willDelete) => {
       if (willDelete) {
        axios
-      .delete(`https://af-test-deploy-app.herokuapp.com/resTopics/${_id}`)
+      .delete(`http://localhost:5001/resTopics/${_id}`)
       .then((res) => res.data)
       .then(() => history("/"))
       .then(() => history("/RsTopics"));

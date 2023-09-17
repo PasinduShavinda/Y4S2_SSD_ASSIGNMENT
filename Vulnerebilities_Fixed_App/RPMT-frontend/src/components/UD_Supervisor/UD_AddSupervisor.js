@@ -37,7 +37,7 @@ const UD_AddSupervisor = (props) => {
     }
 
     axios
-      .post("https://af-test-deploy-app.herokuapp.com/super/supervisorregister", supervisor)
+      .post("http://localhost:5001/super/supervisorregister", supervisor)
       .then((res) => {
         if (res.data.message === "success") {
           console.log(res.data);

@@ -20,7 +20,7 @@ const Sug_thesisdoc_feedback= (props) => {
       .then((willDelete) => {
         if (willDelete) {
            axios
-        .delete(`https://af-test-deploy-app.herokuapp.com/thesisdoc_feedback2/${_id}`)
+        .delete(`http://localhost:5001/thesisdoc_feedback2/${_id}`)
         .then((res) => res.data)
         .then(() => history("/"))
         .then(() => history("/AllThesisFeedback"));

@@ -10,7 +10,7 @@ const Sug_marks= (props) => {
  
     const deleteHandler = async () => {
       await axios
-        .delete(`https://af-test-deploy-app.herokuapp.com/group/${_id}`)
+        .delete(`http://localhost:5001/group/${_id}`)
         .then((res) => res.data)
         .then(() => history("/"))
         .then(() => history("/AllTopicDocFeedback"));
