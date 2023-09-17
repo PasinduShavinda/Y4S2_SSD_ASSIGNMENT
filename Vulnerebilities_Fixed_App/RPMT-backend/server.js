@@ -17,14 +17,26 @@ const router13= require("./routes/sug_Thesis_feedback_router");
 const router14= require("./routes/sug_Thesis_feedback_router2");
 const router15= require("./routes/th_group_router");
 
+// Import Necessary Packages 
+const cookieParser = require('cookie-parser'); // CSRF Cookie parsing
+const bodyParser = require('body-parser'); // CSRF Body parsing
+const csrf = require('csurf');
 
 const cors = require("cors");
 const app = express();
 
+const csrfProtection = csrf({ cookie: true });
 
 // Middlewares
+app.use(cookieParser()); // Use cookie-parser middleware
+app.use(bodyParser.urlencoded({ extended: false })); // Use body-parser middleware
+
 app.use(express.json());
 app.use(cors());
+
+// Apply CSRF protection middleware to all routes below this line
+app.use(csrfProtection);
+
 app.use("/resTopics", router1); // localhost:5000/resTopics
 app.use("/resTopicsNotice", router2); // localhost:5000/resTopicsNotice
 app.use(router3);
