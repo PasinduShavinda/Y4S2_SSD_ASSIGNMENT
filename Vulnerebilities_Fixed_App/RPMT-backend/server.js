@@ -17,26 +17,14 @@ const router13= require("./routes/sug_Thesis_feedback_router");
 const router14= require("./routes/sug_Thesis_feedback_router2");
 const router15= require("./routes/th_group_router");
 
-// Import Necessary Packages 
-const cookieParser = require('cookie-parser'); // CSRF Cookie parsing
-const bodyParser = require('body-parser'); // CSRF Body parsing
-const csrf = require('csurf');
 
 const cors = require("cors");
 const app = express();
 
-const csrfProtection = csrf({ cookie: true });
 
 // Middlewares
-app.use(cookieParser()); // Use cookie-parser middleware
-app.use(bodyParser.urlencoded({ extended: false })); // Use body-parser middleware
-
 app.use(express.json());
 app.use(cors());
-
-// Apply CSRF protection middleware to all routes below this line
-app.use(csrfProtection);
-
 app.use("/resTopics", router1); // localhost:5000/resTopics
 app.use("/resTopicsNotice", router2); // localhost:5000/resTopicsNotice
 app.use(router3);
@@ -52,7 +40,6 @@ app.use("/topicdoc_feedback2", router12);
 app.use("/thesisdoc_feedback", router13);
 app.use("/thesisdoc_feedback2", router14);
 app.use("/group", router15);
-
 //..........udara...
 app.get("/", (req, res) => {
   res.send("Running ");
@@ -60,7 +47,6 @@ app.get("/", (req, res) => {
 app.use("/auth", require("./routes/User"));
 app.use("/super", require("./routes/Supervisor"));
 app.use("/penal", require("./routes/Penalmember"));
-
 mongoose
   .connect(
     "mongodb+srv://afProject2022:af2022proj12A@afprojectcluster.t6kdd.mongodb.net/RPMT_DB?retryWrites=true&w=majority",
