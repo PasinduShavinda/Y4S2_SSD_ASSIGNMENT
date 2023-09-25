@@ -1,6 +1,11 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
-require('dotenv').config();
+const cors = require("cors");
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+
 const router1 = require("./routes/shv_res_topic_routes");
 const router2 = require("./routes/shv_res_topic_notice_admin_routes");
 const router3 = require("./routes/shv_rs_topic_file_routes");
@@ -13,20 +18,33 @@ const router9 = require("./routes/sug_resdoc_feedback_router");
 const router10 = require("./routes/sug_resdoc_feedback_router2");
 const router11 = require("./routes/sug_TopicDock_Evaluvate_routes");
 const router12 = require("./routes/sug_TopicDock_Evaluvate_routes2");
-const router13= require("./routes/sug_Thesis_feedback_router");
-const router14= require("./routes/sug_Thesis_feedback_router2");
-const router15= require("./routes/th_group_router");
+const router13 = require("./routes/sug_Thesis_feedback_router");
+const router14 = require("./routes/sug_Thesis_feedback_router2");
+const router15 = require("./routes/th_group_router");
 
+const csrfProtection = csrf({ cookie: true });
+const parseForm = bodyParser.urlencoded({ extended: false })
 
-const cors = require("cors");
 const app = express();
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+}
 
 // Middlewares
+app.use(cors(corsOptions));
+// parse cookies
+// we need this because "cookie" is true in csrfProtection
+app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
-app.use("/resTopics", router1); // localhost:5000/resTopics
-app.use("/resTopicsNotice", router2); // localhost:5000/resTopicsNotice
+
+app.get('/getToken', csrfProtection, function (req, res) {
+  res.send({csrfToken: req.csrfToken() })
+});
+
+app.use("/resTopics",parseForm, csrfProtection, router1); 
+app.use("/resTopicsNotice", router2);
 app.use(router3);
 app.use(router4);
 app.use(router5);
@@ -40,13 +58,11 @@ app.use("/topicdoc_feedback2", router12);
 app.use("/thesisdoc_feedback", router13);
 app.use("/thesisdoc_feedback2", router14);
 app.use("/group", router15);
-//..........udara...
-app.get("/", (req, res) => {
-  res.send("Running ");
-});
 app.use("/auth", require("./routes/User"));
 app.use("/super", require("./routes/Supervisor"));
 app.use("/penal", require("./routes/Penalmember"));
+
+mongoose.set('strictQuery', false);
 mongoose
   .connect(
     "mongodb+srv://afProject2022:af2022proj12A@afprojectcluster.t6kdd.mongodb.net/RPMT_DB?retryWrites=true&w=majority",
@@ -61,3 +77,18 @@ mongoose
     });
   })
   .catch((err) => console.log(err));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
