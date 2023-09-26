@@ -65,7 +65,7 @@ app.use("/penal", require("./routes/Penalmember"));
 mongoose.set('strictQuery', false);
 mongoose
   .connect(
-    "mongodb+srv://afProject2022:af2022proj12A@afprojectcluster.t6kdd.mongodb.net/RPMT_DB?retryWrites=true&w=majority",
+    "mongodb://localhost:27017/rpmtdb",
     {
       useUnifiedTopology: true,
     }
