@@ -31,7 +31,7 @@ const UD_SuperSignup = () => {
     };
 
     axios
-      .post("http://localhost:5001/super/supervisorregister", supervisorData)
+      .post("http://localhost:8090/super/supervisorregister", supervisorData)
       .then((res) => {
         if (res.data.message === "success") {
           // var currentUser = res.data.data;

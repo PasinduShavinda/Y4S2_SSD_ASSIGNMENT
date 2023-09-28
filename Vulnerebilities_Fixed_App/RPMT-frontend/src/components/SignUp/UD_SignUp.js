@@ -31,7 +31,7 @@ const UD_Signup = () => {
     };
 
     axios
-      .post("http://localhost:5001/auth/register", userData)
+      .post("http://localhost:8090/auth/register", userData)
       .then((res) => {
         if (res.data.message === "success") {
           // var currentUser = res.data.data;

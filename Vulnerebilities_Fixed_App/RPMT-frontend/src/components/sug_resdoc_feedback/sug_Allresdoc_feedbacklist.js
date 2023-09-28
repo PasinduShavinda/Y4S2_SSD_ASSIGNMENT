@@ -2,7 +2,7 @@ import React ,{ useEffect, useState }from 'react'
 import axios from "axios"
 import Sug_supervioser_page from "../sug_supervisor_page/sug_supervisor_page"
 import Sug_resdoc_feedback from "./sug_resdoc_feedback";
-const URL = "http://localhost:5001/resdoc_feedback2";
+const URL = "http://localhost:8090/resdoc_feedback2";
 
 
 const fetchHandler = async () => {

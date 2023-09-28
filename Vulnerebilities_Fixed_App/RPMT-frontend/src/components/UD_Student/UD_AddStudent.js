@@ -37,7 +37,7 @@ const UD_AddStudent = (props) => {
     }
 
     axios
-      .post("http://localhost:5001/auth/register", user)
+      .post("http://localhost:8090/auth/register", user)
       .then((res) => {
         if (res.data.message === "success") {
           console.log(res.data);

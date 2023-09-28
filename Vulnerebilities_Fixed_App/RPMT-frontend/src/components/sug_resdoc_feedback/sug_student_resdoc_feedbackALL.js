@@ -1,6 +1,6 @@
 import React ,{ useEffect, useState }from 'react'
 import axios from "axios"
-const URL = "http://localhost:5001/resdoc_feedback2";
+const URL = "http://localhost:8090/resdoc_feedback2";
 
 
 const Sug_student_resdoc_feedbackALL = () => {

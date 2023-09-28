@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-const URL = "http://localhost:5001/resTopics";
+const URL = "http://localhost:8090/resTopics";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);

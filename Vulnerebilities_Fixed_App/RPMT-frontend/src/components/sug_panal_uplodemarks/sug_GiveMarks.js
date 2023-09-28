@@ -14,7 +14,7 @@ const Sug_FinalMarks_Assign = () => {
     useEffect(() => {
     const fetchHandler = async () => {
       await axios
-        .get(`http://localhost:5001/group/${id}`)
+        .get(`http://localhost:8090/group/${id}`)
         .then((res) => res.data)
         .then(data=>setInputs(data.Groups))
            
@@ -36,7 +36,7 @@ const Sug_FinalMarks_Assign = () => {
 
         }else{
           await axios
-          .put(`http://localhost:5001/group/${id}`, {
+          .put(`http://localhost:8090/group/${id}`, {
           
             Grp_ID:String(inputs.Grp_ID),
             Panel:String(inputs.Panel),

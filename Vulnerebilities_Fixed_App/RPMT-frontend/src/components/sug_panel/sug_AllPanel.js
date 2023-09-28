@@ -4,7 +4,7 @@ import Panel from "./sug_Panel";
 import "./sug_AllPanel.css"
 import Sug_panelmembers_page from "../sug_panelmembers_page/sug_panelmembers_page"
 
-const URL = "http://localhost:5001/panelcreate";
+const URL = "http://localhost:8090/panelcreate";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);

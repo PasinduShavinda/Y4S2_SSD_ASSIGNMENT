@@ -29,7 +29,7 @@ const UD_ManageStudent = (props) => {
   // const deleteData = (e) => {
   //   try {
   //     axios
-  //       .delete(`http://localhost:5001/auth/register${e.target.value}`)
+  //       .delete(`http://localhost:8090/auth/register${e.target.value}`)
   //       .then((res) => {
   //         swal("Success", "Deleted Successfully", "success");
   //       });
@@ -49,7 +49,7 @@ const UD_ManageStudent = (props) => {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`http://localhost:5001/auth/register${e.target.value}`)
+          .delete(`http://localhost:8090/auth/register${e.target.value}`)
           .then((res) => res.data);
 
         swal("Done! Student has been deleted!", {
@@ -70,7 +70,7 @@ const UD_ManageStudent = (props) => {
 
   //retrieving data from the database---------------------------------
   useEffect(() => {
-    axios.get("http://localhost:5001/auth/user${props.ID}").then((res) => {
+    axios.get("http://localhost:8090/auth/user${props.ID}").then((res) => {
       setUsers(res.data.data);
     });
   });

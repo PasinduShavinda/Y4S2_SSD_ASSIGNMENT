@@ -37,7 +37,7 @@ const UD_EditStudent = ({ onClick, id, formData }) => {
     }
 
     axios
-      .post(`http://localhost:5001/auth/register${id}`, user)
+      .post(`http://localhost:8090/auth/register${id}`, user)
       .then((res) => {
         if (res.data.message === "success") {
           setFirstName("");

@@ -12,7 +12,7 @@ const Sug_GroupID_and_Panel_Assign = () => {
     useEffect(() => {
     const fetchHandler = async () => {
       await axios
-        .get(`http://localhost:5001/group/${id}`)
+        .get(`http://localhost:8090/group/${id}`)
         .then((res) => res.data)
         .then(data=>setInputs(data.Groups))
            
@@ -42,7 +42,7 @@ const Sug_GroupID_and_Panel_Assign = () => {
 
         }
         else{await axios
-          .put(`http://localhost:5001/group/${id}`, {
+          .put(`http://localhost:8090/group/${id}`, {
             Grp_Leader: String(inputs.Grp_Leader),
             Grp_member2: String(inputs.Grp_member2),
             Grp_member3: String(inputs.Grp_member3),

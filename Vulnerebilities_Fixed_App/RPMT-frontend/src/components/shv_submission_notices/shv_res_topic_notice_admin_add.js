@@ -35,7 +35,7 @@ import {
         swal("Feilds Cannot Be empty !!", "You Must fill all the feilds !!", "error");
       }else{
       await axios
-        .post("http://localhost:5001/resTopicsNotice", {
+        .post("http://localhost:8090/resTopicsNotice", {
           ResTopicNoticeHeader: String(inputs.ResTopicNoticeHeader),
           ResTopicNoticeLineOne: String(inputs.ResTopicNoticeLineOne),
           ResTopicNoticeLineTwo: String(inputs.ResTopicNoticeLineTwo),

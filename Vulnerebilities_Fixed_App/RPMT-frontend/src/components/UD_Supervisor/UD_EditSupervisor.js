@@ -37,7 +37,7 @@ const UD_EditSupervisor = ({ onClick, id, formData }) => {
     }
 
     axios
-      .post(`http://localhost:5001/super/supervisorregister${id}`, supervisor)
+      .post(`http://localhost:8090/super/supervisorregister${id}`, supervisor)
       .then((res) => {
         if (res.data.message === "success") {
           setFirstName("");

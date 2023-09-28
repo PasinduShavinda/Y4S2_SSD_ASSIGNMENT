@@ -100,9 +100,6 @@ Router.get('/Topicdownload/:id', async (req, res) => {
     
     const filePath = path.join(__dirname, '..', file.file_path);
     
-    console.log('safeDirectory:', safeDirectory);
-    console.log('filePath:', filePath);
-
     // Ensure the filePath is within a safe directory.
     if (!isSafePath(filePath)) {
       console.error('Access denied for filePath:', filePath);

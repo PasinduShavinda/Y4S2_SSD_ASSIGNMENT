@@ -2,7 +2,7 @@ import React ,{ useEffect, useState }from 'react'
 import axios from "axios"
 
 import Th_groups from "./th_group";
-const URL = "http://localhost:5001/group";
+const URL = "http://localhost:8090/group";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);

@@ -4,7 +4,7 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { useNavigate } from "react-router-dom";
-const API_URL = 'http://localhost:5001';
+const API_URL = 'http://localhost:8090';
 
 const ResDocHome = (props) => {
   const history = useNavigate();

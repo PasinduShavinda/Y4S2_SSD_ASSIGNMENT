@@ -22,7 +22,7 @@ const Shv_rs_add_rs_topic = () => {
 
   async function getCsrfToken() {
     try {
-      const response = await fetch("http://localhost:5001/getToken", {
+      const response = await fetch("http://localhost:8090/getToken", {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -63,7 +63,7 @@ const Shv_rs_add_rs_topic = () => {
         swal("Invalid Supervisor Name !", "Name cannot contain numbers ! Please enter a valid name !", "error");
       } else {
 
-        const fetchPostResponse = await fetch(`http://localhost:5001/resTopics`, {
+        const fetchPostResponse = await fetch(`http://localhost:8090/resTopics`, {
           method: 'POST',
           headers: {
               Accept: 'application/json',

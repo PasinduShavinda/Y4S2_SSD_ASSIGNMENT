@@ -20,7 +20,7 @@ const Shv_rs_topic_details = () => {
 
   async function getCsrfToken() {
     try {
-      const response = await fetch("http://localhost:5001/getToken", {
+      const response = await fetch("http://localhost:8090/getToken", {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -46,7 +46,7 @@ const Shv_rs_topic_details = () => {
   useEffect(() => {
     const fetchHandler = async () => {
       await axios
-        .get(`http://localhost:5001/resTopics/${id}`)
+        .get(`http://localhost:8090/resTopics/${id}`)
         .then((res) => res.data)
         .then((data) => setInputs(data.resTopics));
     };
@@ -63,7 +63,7 @@ const Shv_rs_topic_details = () => {
         swal("Invalid Supervisor Name !", "Name cannot contain numbers ! Please enter a valid name !", "error");
       } else {
 
-        const fetchPostResponse = await fetch(`http://localhost:5001/resTopics/${id}`, {
+        const fetchPostResponse = await fetch(`http://localhost:8090/resTopics/${id}`, {
           method: 'PUT',
           headers: {
             Accept: 'application/json',
@@ -102,7 +102,7 @@ const Shv_rs_topic_details = () => {
   //     swal("Invalid Supervisor Name !", "Name cannot contain numbers ! Please enter valid name !", "error");
   //   }else{
   //   await axios
-  //     .put(`http://localhost:5001/resTopics/${id}`, {
+  //     .put(`http://localhost:8090/resTopics/${id}`, {
   //       ResTopicgroupId: String(inputs.ResTopicgroupId),
   //       ResTopicsupervisor: String(inputs.ResTopicsupervisor),
   //       ResTopicresearchArea: String(inputs.ResTopicresearchArea),

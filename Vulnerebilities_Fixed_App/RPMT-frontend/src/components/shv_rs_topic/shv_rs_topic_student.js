@@ -16,7 +16,7 @@ const Shv_rs_topic = (props) => {
   const { _id, ResTopicgroupId, ResTopicsupervisor, ResTopicresearchArea, ResTopicResearchTopic, createdAt } = props.resTopic;
   async function getCsrfToken() {
     try {
-      const response = await fetch("http://localhost:5001/getToken", {
+      const response = await fetch("http://localhost:8090/getToken", {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -49,7 +49,7 @@ const Shv_rs_topic = (props) => {
     }).then(async (willDelete) => {
       if (willDelete) {
         try {
-          const response = await fetch(`http://localhost:5001/resTopics/${_id}`, {
+          const response = await fetch(`http://localhost:8090/resTopics/${_id}`, {
             method: 'DELETE',
             headers: {
               Accept: 'application/json',
