@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const validator = require("email-validator");
 const User = require("../model/User");
+const rateLimit = require("express-rate-limit");
+var sanitize = require('mongo-sanitize');
 
 router.get("/", async (req, res) => {
   const users = await User.find();
@@ -11,23 +13,29 @@ router.get("/", async (req, res) => {
   });
 });
 
+const loginLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minutes
+  max: 5, // 5 login attempts per windowMs
+  message: "Too many login attempts from this IP, please try again later.",
+});
+
 //..........input data..................
-router.post("/login", async (req, res) => {
+router.post("/login",loginLimiter, async (req, res) => {
   try {
     const valid = validator.validate(req.body.email);
     if (!valid) {
       throw new Error("Invalid email, please try again!");
     }
-    const user = await User.findOne({ email: req.body.email }).select(
-      "+password"
-    );
+    // const user = await User.findOne({ email: req.body.email ,password :req.body.password})
+    // if (!user) {
+    //   throw new Error("Incorrect Password");
+    // }
+    const user = await User.findOne({ email: req.body.email ,password : sanitize(req.body.password)})
     if (!user) {
-      throw new Error("User with this email does not exist");
+      throw new Error("Incorrect Password");
     }
 
-    if (user.password !== req.body.password) {
-      throw new Error("Invalid Password");
-    }
+   
 
     user.password = null;
 
