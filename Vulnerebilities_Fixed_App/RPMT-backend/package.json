@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "author": "",
   "license": "ISC",
@@ -26,11 +28,13 @@
     "mongoose": "^6.1.7",
     "multer": "^1.4.2",
     "nodemon": "^2.0.15",
-    "passport": "^0.5.2",
+    "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
     "pino": "^7.8.0",
     "pino-pretty": "^7.5.1",
     "send": "^0.18.0",
-    "util": "^0.12.5"
-  }
+    "util": "^0.12.5",
+    "@snyk/protect": "latest"
+  },
+  "snyk": true
 }
