@@ -5,7 +5,12 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import { useNavigate } from "react-router-dom";
 
-const API_URL = 'http://localhost:5001';
+const API_URL = 'http://localhost:8090';
+
+const axiosInstance = axios.create({
+  baseURL: API_URL,
+  withCredentials: true, // Send cookies with the request
+});
 
 const TopicHome = (props) => {
   const history = useNavigate();
@@ -50,42 +55,49 @@ const TopicHome = (props) => {
   };
 
   const handleOnSubmit = async (event) => {
-
     const name = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
     event.preventDefault();
   
     try {
       const { ResTopicFileGroupId, ResTopicFileSupervisor, ResTopicFileTopic, ResTopicFilePanel } = state;
       const formData = new FormData();
-      if(ResTopicFileGroupId.trim() == '' || ResTopicFileSupervisor.trim() == '' || ResTopicFileTopic.trim() == '' || ResTopicFilePanel.trim() == '' ){
-        swal("Feilds Cannot Be empty !!", "You Must fill all the feilds !!", "error");
-      }else if((!name.test(String(ResTopicFileSupervisor)))){
-        swal("Invalid Supervisor Name !", "Name cannot contain numbers ! Please enter valid name !", "error");
-      }else{
+      if (ResTopicFileGroupId.trim() === '' || ResTopicFileSupervisor.trim() === '' || ResTopicFileTopic.trim() === '' || ResTopicFilePanel.trim() === '') {
+        swal("Fields Cannot Be Empty!", "You Must Fill All the Fields!", "error");
+      } else if (!name.test(String(ResTopicFileSupervisor))) {
+        swal("Invalid Supervisor Name!", "Name cannot contain numbers. Please enter a valid name!", "error");
+      } else {
         if (file) {
-
           formData.append('file', file);
           formData.append('ResTopicFileGroupId', ResTopicFileGroupId);
           formData.append('ResTopicFileSupervisor', ResTopicFileSupervisor);
           formData.append('ResTopicFileTopic', ResTopicFileTopic);
           formData.append('ResTopicFilePanel', ResTopicFilePanel);
-          
-            await axios.post(`${API_URL}/TopicUpload`, formData, {
+  
+          await axiosInstance.post(`${API_URL}/TopicUpload`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
           })
-          .then(() => history("/RsTopiFileList"));
-          swal("Successful!", "Topic details Document Successfully Submitted !!", "success");
-        }else {
-          swal("Submission Fail !", "You Must Select a File ! Please Upload a file And Try Again !", "error");
+          .then(() => {
+            swal("Successful!", "Topic details Document Successfully Submitted !!", "success");
+            history("/RsTopiFileList");
+          })
+          .catch((error) => {
+            if (error.response && error.response.status === 401) {
+              swal("Unauthorized!", "Please log in to continue.", "error");
+            } else {
+              swal("Error!", "An error occurred while submitting the document. Please try again later.", "error");
+            }
+          });
+        } else {
+          swal("Submission Failed!", "You Must Select a File! Please Upload a File and Try Again!", "error");
         }
-      } 
-      
+      }
     } catch (error) {
       error.response && setErrorMsg(error.response.data);
     }
   };
+  
 
   return (
    

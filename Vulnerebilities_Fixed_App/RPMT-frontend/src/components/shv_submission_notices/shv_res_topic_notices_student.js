@@ -4,7 +4,7 @@ import Shv_res_topic_notice_student from "./shv_res_topic_notice_student";
 import "./shv_rs_topic_notice_styles.css";
 import { Button, Typography, Box, responsiveFontSizes } from "@mui/material";
 import { Link } from "react-router-dom";
-const URL = "http://localhost:5001/resTopicsNotice";
+const URL = "http://localhost:8090/resTopicsNotice";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);
@@ -18,8 +18,6 @@ const Shv_res_topic_notices_student = () => {
     fetchHandler().then((data) => setresTopicsNotices(data.resTopicsNotices));
   
   }, []);
-  
-  console.log(resTopicsNotices);
   
   return (
     <div>

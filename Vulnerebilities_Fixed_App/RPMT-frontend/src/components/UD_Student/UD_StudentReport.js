@@ -35,7 +35,7 @@ const UD_StudentReport = (props) => {
   const [filterText, setFilterText] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5001/auth/user${props.ID}").then((res) => {
+    axios.get("http://localhost:8090/auth/user${props.ID}").then((res) => {
       setUsers(res.data.data);
     });
   });

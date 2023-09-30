@@ -2,7 +2,7 @@ import React ,{ useEffect, useState }from 'react'
 import axios from "axios"
 
 
-const URL = "http://localhost:5001/thesisdoc_feedback2";
+const URL = "http://localhost:8090/thesisdoc_feedback2";
 
 
 const Sug_student_AllThesisdocfeedbacks = () => {
@@ -10,10 +10,6 @@ const Sug_student_AllThesisdocfeedbacks = () => {
   useEffect(() => {
     axios.get(URL).then((res) => res.data).then((data) => setfeedbacks(data.Feedbacks));
   }, []);
-  console.log(Feedbacks);
-
-
-
 
   const [filterText, setFilterText] = useState("");
 

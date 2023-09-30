@@ -2,7 +2,7 @@ import React ,{ useEffect, useState }from 'react'
 import axios from "axios"
 
 import Sug_grp_admin from "./sug_grp_admin";
-const URL = "http://localhost:5001/group";
+const URL = "http://localhost:8090/group";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);
@@ -12,7 +12,6 @@ const Sug_AllGroups_admin = () => {
   useEffect(() => {
     fetchHandler().then((data) => setGroups(data.Groups));
   }, []);
-  console.log(Groups);
 
 
   return (

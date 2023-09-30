@@ -17,7 +17,7 @@ const Shv_rs_topic_supervisor = (props) => {
   const deleteHandler = async () => {
   
     await axios
-      .delete(`http://localhost:5001/resTopics/${_id}`)
+      .delete(`http://localhost:8090/resTopics/${_id}`)
       .then((res) => res.data)
       .then(() => history("/"))
       .then(() => history("/RsTopics"));

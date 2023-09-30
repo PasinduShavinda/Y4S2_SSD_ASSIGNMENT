@@ -3,7 +3,7 @@ import axios from "axios"
 import Sug_supervioser_page from "../sug_supervisor_page/sug_supervisor_page"
 
 import Sug_thesisdoc_feedback from "./sug_thesis_feedbacks";
-const URL = "http://localhost:5001/thesisdoc_feedback2";
+const URL = "http://localhost:8090/thesisdoc_feedback2";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);
@@ -13,7 +13,6 @@ const Sug_AllThesisdocfeedbacks = () => {
   useEffect(() => {
     fetchHandler().then((data) => setfeedbacks(data.Feedbacks));
   }, []);
-  console.log(Feedbacks);
 
 
   return (<div>

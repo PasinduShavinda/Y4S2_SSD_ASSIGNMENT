@@ -37,13 +37,11 @@ const UD_AddSupervisor = (props) => {
     }
 
     axios
-      .post("http://localhost:5001/super/supervisorregister", supervisor)
+      .post("http://localhost:8090/super/supervisorregister", supervisor)
       .then((res) => {
         if (res.data.message === "success") {
-          console.log(res.data);
           swal("Success", "Supervisor genarate successfully", "success");
         } else {
-          console.log(res.data);
           swal("Error", "Supervisor genarate unsuccessfully", "error");
         }
       })
