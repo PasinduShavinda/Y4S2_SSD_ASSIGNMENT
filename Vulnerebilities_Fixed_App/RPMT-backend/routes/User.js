@@ -1,8 +1,10 @@
+
 const express = require("express");
 const router = express.Router();
 const validator = require("email-validator");
 const User = require("../model/User");
 const rateLimit = require("express-rate-limit");
+const axios = require("axios")
 var sanitize = require('mongo-sanitize');
 
 router.get("/", async (req, res) => {
@@ -14,7 +16,7 @@ router.get("/", async (req, res) => {
 });
 
 const loginLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minutes
+  windowMs: 15 * 60 * 1000, // 1 minutes
   max: 5, // 5 login attempts per windowMs
   message: "Too many login attempts from this IP, please try again later.",
 });
@@ -33,6 +35,14 @@ router.post("/login",loginLimiter, async (req, res) => {
     const user = await User.findOne({ email: req.body.email ,password : sanitize(req.body.password)})
     if (!user) {
       throw new Error("Incorrect Password");
+    }
+    
+    const recaptchaResponse = req.body.recaptchavalue;
+    console.log(`hfbvfbhbf${req.body.recaptchavalue}`)
+    const isRecaptchaValid = await verifyRecaptcha(recaptchaResponse);
+
+    if (!isRecaptchaValid) {
+      throw new Error("reCAPTCHA verification failed");
     }
 
    
@@ -143,3 +153,27 @@ router.get("/:userid", async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+async function verifyRecaptcha(response) {
+  const SECRET ='6Ledi2QoAAAAAKgYRbFLc3MlrzipsbNoeHxcOr1j'
+  // Make a request to Google's reCAPTCHA verification endpoint
+  const googleRecaptchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET}&response=${response}`;
+
+  try {
+    const recaptchaResponse = await axios.post(googleRecaptchaUrl);
+    if (recaptchaResponse.data.success) {
+      return true; // Verification successful
+    } else {
+      console.error("reCAPTCHA verification failed", recaptchaResponse.data);
+      return false; // Verification failed
+    }
+  } catch (error) {
+    console.error("Error verifying reCAPTCHA:", error);
+    return false; // Verification failed due to an error
+  }
+}
+
+
+
