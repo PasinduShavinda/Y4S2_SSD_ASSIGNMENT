@@ -134,7 +134,7 @@ function App() {
           <Route path="/createPanel" element={<Sug_CreatePanel />} exact />
           <Route path="/ResDocFeedback/:id"element={<Sug_Resdoc_addfeedback />}exact />
           <Route path="/AllResDocFeedback" element={<Sug_AllResdocfeedbacks />}exact/>
-          <Route path="/AllResDocFeedback/:id" element={<Sug_Resdoc_updatefeedback />} exact/>
+          <Route path="/:id" element={<Sug_Resdoc_updatefeedback />} exact/>
 
           <Route path="/student_AllTopicdocfeedbacks" element={<Sug_student_AllTopicdocfeedbacks />} exact/>
           <Route path="/student_AllThesisdocfeedbacks" element={<Sug_student_AllThesisdocfeedbacks />} exact/>
@@ -226,3 +226,4 @@ function App() {
 }
 
 export default App;
+

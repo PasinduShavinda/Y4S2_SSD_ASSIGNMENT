@@ -4,18 +4,51 @@ import LoginImg from "../../assets/login_left.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import ReCAPCHA  from 'react-google-recaptcha'
+
+const SITE_KEY = '6Ledi2QoAAAAAMoccGF-kNdG9jnPz36fnRJ6jz5O'
 
 const UD_Login = () => {
-
+ 
+  const [recaptchavalue, setrecaptchavalue] = useState('')
   let navigate = useNavigate();
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showCountdown, setShowCountdown] = useState(false);
+  const [countdown, setCountdown] = useState(10); // Initial countdown time in seconds
+  const [remainingAttempts, setRemainingAttempts] = useState(5); // Initialize with the maximum allowed attempts
+  
+  const handlesubmit = value =>{
+    setrecaptchavalue(value)
+  }
+  useEffect(() => {
+    let timer;
+    if (showCountdown && countdown > 0) {
+      timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      },  1000,); // Update countdown every second
+    } else if (showCountdown && countdown === 0) {
+      setShowCountdown(false);
+      clearTimeout(timer);
+    }
+    return () => clearTimeout(timer); // Cleanup timer on unmount or when countdown stops
+  }, [showCountdown, countdown]);
+
+  const handleFailedLogin = () => {
+    setRemainingAttempts(remainingAttempts - 1); // Decrease remaining attempts
+    if (remainingAttempts <= 0) {
+      setShowCountdown(true);
+      setCountdown(900); // Set the countdown time to 15 minutes (15 * 60 seconds)
+    }
+  };
 
   const Login = () => {
     const user = {
       email: email,
       password: password,
+      recaptchavalue: recaptchavalue
+      
     };
 
     axios
@@ -31,10 +64,14 @@ const UD_Login = () => {
             navigate("/stdHome", { currentUser });
           }
         } else {
+          if (res.data.error === "Too many login attempts from this IP, please try again later.") {
+            handleFailedLogin();
+          }
           swal("Sorry", "Login Failed", "error");
         }
       })
       .catch((error) => {
+        handleFailedLogin();
         swal("Sorry", error.response.data.error, "error");
       });
   };
@@ -65,8 +102,18 @@ const UD_Login = () => {
                 className="passwordInput"
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </div>
+                  
+           </div>
+           
+           
             <div className="UDSDbtngroup">
+              <div className="UDReCAPCHA" >
+              <ReCAPCHA
+            sitekey = {SITE_KEY}
+            onChange= {handlesubmit}/>
+              </div>
+           
+        
               <button className="UDSDbtn" onClick={Login}>
               <span className="material-icons">login</span> 
                 Login
@@ -80,10 +127,22 @@ const UD_Login = () => {
                   <span>SIGNUP</span>
                 </Link>
               </h3>
+              {showCountdown && (
+            <div className="countdown-timer">
+              <p>
+                Too many login attempts. Retry in {Math.floor(countdown / 60)}:{(countdown % 60).toString().padStart(2, "0")} minutes.
+              </p>
+            
             </div>
+          )}
+            </div>
+          
           </div>
+          
           <div className="UDSDright"></div>
+          
         </div>
+      
       </div>
     </>
   );

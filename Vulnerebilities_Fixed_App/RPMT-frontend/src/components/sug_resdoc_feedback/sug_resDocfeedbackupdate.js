@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
 import {Box,Button,FormLabel,TextareaAutosize,TextField,} from "@mui/material";
 import Sug_supervioser_page from "../sug_supervisor_page/sug_supervisor_page"
+import DOMPurify from "dompurify";
+
 const Sug_Resdoc_updatefeedback = () => {
      
   const [inputs, setInputs] = useState({});
@@ -34,7 +36,7 @@ const Sug_Resdoc_updatefeedback = () => {
             ResDocFileGroupId: String(inputs.ResDocFileGroupId),
             ResDocFileSupervisor: String(inputs.ResDocFileSupervisor),
             ResDocFileTopic: String(inputs. ResDocFileTopic),
-            Feedback: String(inputs. Feedback),
+            Feedback: DOMPurify.sanitize(String(inputs. Feedback)),
             EvaluvatedDate: String(inputs.EvaluvatedDate),
           })
           .then((res) => res.data);
