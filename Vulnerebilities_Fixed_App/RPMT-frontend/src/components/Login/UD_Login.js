@@ -43,7 +43,7 @@ const UD_Login = () => {
 
   const handleGoogleLoginClick = () => {
     // Redirect to the Google OAuth login page
-    window.location.href = 'http://localhost:8090/auth/google'; 
+    window.location.href = 'http://localhost:8090/auth/google';
   };
 
   return (
@@ -65,15 +65,14 @@ const UD_Login = () => {
                 className="passwordInput"
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <br></br>
-              <button className="UDSDbtn" onClick={handleGoogleLoginClick}>
-                Login
-              </button>
             </div>
-            
             <div className="UDSDbtngroup">
               <button className="UDSDbtn" onClick={Login}>
+              <span className="material-icons">login</span> 
                 Login
+              </button>
+              <button className="googleLoginBtn" onClick={handleGoogleLoginClick}>
+                <span className="material-icons">key</span> Login with Google
               </button>
               <h3 className="UDSDloginlink">
                 Don't have an account?

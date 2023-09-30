@@ -65,8 +65,8 @@ app.use(
     store: new MongoConnect({ mongoUrl: config.DB_CONNECTION_STRING }),
     cookie: {
       secure: false,
-      expires: new Date(Date.now() + 1000000),
-      maxAge: 1000000,
+      expires: new Date(Date.now() + 900000),
+      maxAge: 900000,
     },
   })
 );
