@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import download from 'downloadjs';
 import axios from 'axios';
-const API_URL = 'http://localhost:5001';
+import swal from 'sweetalert';
+
+const API_URL = 'http://localhost:8090';
+
+const axiosInstance = axios.create({
+  baseURL: API_URL,
+  withCredentials: true, // Send cookies with the request
+});
 
 const TopicFilesList = () => {
   const [filesList, setFilesList] = useState([]);
@@ -11,16 +18,23 @@ const TopicFilesList = () => {
   useEffect(() => {
     const getFilesList = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/TopicgetAllFiles`);
+        const { data } = await axiosInstance.get("/TopicgetAllFiles");
         setErrorMsg('');
         setFilesList(data);
       } catch (error) {
-        error.response && setErrorMsg(error.response.data);
+        if (error.response && error.response.status === 401) {
+          swal("Unauthorized!", "Please log in to continue.", "error");
+        } else if (error.response && error.response.status === 400) {
+          setErrorMsg('Error while getting list of files. Try again later.');
+        } else {
+          swal("Error!", "An error occurred. Please try again later.", "error");
+        }
       }
     };
 
     getFilesList();
   }, []);
+
 
   const downloadFile = async (id, path, mimetype) => {
     try {

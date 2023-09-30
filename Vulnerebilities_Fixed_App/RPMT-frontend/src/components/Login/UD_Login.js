@@ -1,20 +1,18 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./UD_Login.css";
 import LoginImg from "../../assets/login_left.png";
-import { Link, useNavigate } from "react-router-dom";
-import ReCAPCHA  from 'react-google-recaptcha'
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
-
+import ReCAPCHA  from 'react-google-recaptcha'
 
 const SITE_KEY = '6Ledi2QoAAAAAMoccGF-kNdG9jnPz36fnRJ6jz5O'
 
-
-
 const UD_Login = () => {
-  let navigate = useNavigate();
-  
+ 
   const [recaptchavalue, setrecaptchavalue] = useState('')
+  let navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showCountdown, setShowCountdown] = useState(false);
@@ -23,7 +21,6 @@ const UD_Login = () => {
   
   const handlesubmit = value =>{
     setrecaptchavalue(value)
-    console.log(value)
   }
   useEffect(() => {
     let timer;
@@ -55,17 +52,15 @@ const UD_Login = () => {
     };
 
     axios
-      .post("http://localhost:5001/auth/login", user)
+      .post("http://localhost:8090/auth/login", user)
       .then((res) => {
         if (res.data.message === "success") {
           var currentUser = res.data.data;
           if (currentUser.type === "admin") {
             localStorage.setItem("user-info-admin", currentUser);
-            //history.push("/dashboard");
             navigate("/dashboard");
           } else {
             localStorage.setItem("user-info-customer", currentUser);
-            // history.push("/stdHome", { currentUser });
             navigate("/stdHome", { currentUser });
           }
         } else {
@@ -79,6 +74,13 @@ const UD_Login = () => {
         handleFailedLogin();
         swal("Sorry", error.response.data.error, "error");
       });
+  };
+
+  // Handle the google login button
+
+  const handleGoogleLoginClick = () => {
+    // Redirect to the Google OAuth login page
+    window.location.href = 'http://localhost:8090/auth/google';
   };
 
   return (
@@ -113,7 +115,11 @@ const UD_Login = () => {
            
         
               <button className="UDSDbtn" onClick={Login}>
+              <span className="material-icons">login</span> 
                 Login
+              </button>
+              <button className="googleLoginBtn" onClick={handleGoogleLoginClick}>
+                <span className="material-icons">key</span> Login with Google
               </button>
               <h3 className="UDSDloginlink">
                 Don't have an account?
@@ -121,15 +127,12 @@ const UD_Login = () => {
                   <span>SIGNUP</span>
                 </Link>
               </h3>
-              
-            
-
               {showCountdown && (
             <div className="countdown-timer">
               <p>
                 Too many login attempts. Retry in {Math.floor(countdown / 60)}:{(countdown % 60).toString().padStart(2, "0")} minutes.
               </p>
-             
+            
             </div>
           )}
             </div>

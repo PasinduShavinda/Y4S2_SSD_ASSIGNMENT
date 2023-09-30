@@ -37,13 +37,11 @@ const UD_AddPenalmember = (props) => {
     }
 
     axios
-      .post("http://localhost:5001/penal/penalmemberregister", penalmember)
+      .post("http://localhost:8090/penal/penalmemberregister", penalmember)
       .then((res) => {
         if (res.data.message === "success") {
-          console.log(res.data);
           swal("Success", "Penalmember genarate successfully", "success");
         } else {
-          console.log(res.data);
           swal("Error", "Penalmember genarate unsuccessfully", "error");
         }
       })

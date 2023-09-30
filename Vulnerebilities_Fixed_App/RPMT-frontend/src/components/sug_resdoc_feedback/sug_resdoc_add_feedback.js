@@ -14,7 +14,7 @@ const Sug_Resdoc_addfeedback = () => {
     useEffect(() => {
     const fetchHandler = async () => {
       await axios
-        .get(`http://localhost:5001/resdoc_feedback/${id}`)
+        .get(`http://localhost:8090/resdoc_feedback/${id}`)
         .then((res) => res.data)
         .then(data=>setInputs(data.feedbacks))
            
@@ -31,7 +31,7 @@ const Sug_Resdoc_addfeedback = () => {
       };
       const sendRequest = async () => {
         await axios
-          .post("http://localhost:5001/resdoc_feedback2", {
+          .post("http://localhost:8090/resdoc_feedback2", {
             ResDocFileGroupId: String(inputs.ResDocFileGroupId),
             ResDocFileSupervisor: String(inputs.ResDocFileSupervisor),
             ResDocFileTopic: String(inputs. ResDocFileTopic),
@@ -43,7 +43,6 @@ const Sug_Resdoc_addfeedback = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
         sendRequest().then(() => history("/AllResDocFeedback"));
       };
     

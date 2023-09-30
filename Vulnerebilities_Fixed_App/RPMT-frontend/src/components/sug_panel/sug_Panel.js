@@ -20,7 +20,7 @@ const Panel= (props) => {
         if (willDelete) {
         
          axios
-        .delete(`http://localhost:5001/panelcreate/${_id}`)
+        .delete(`http://localhost:8090/panelcreate/${_id}`)
         .then((res) => res.data)
         .then(() => history("/"))
         .then(() => history("/allPanel"));

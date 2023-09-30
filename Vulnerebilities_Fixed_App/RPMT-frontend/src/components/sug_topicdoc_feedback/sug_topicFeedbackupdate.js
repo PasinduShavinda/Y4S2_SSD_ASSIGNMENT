@@ -1,7 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
-import {Box,Button,FormLabel,TextareaAutosize,TextField,} from "@mui/material";
 import Sug_panelmembers_page from "../sug_panelmembers_page/sug_panelmembers_page"
 
 const Sug_Topicdoc_updatefeedback = () => {
@@ -14,7 +13,7 @@ const Sug_Topicdoc_updatefeedback = () => {
     useEffect(() => {
     const fetchHandler = async () => {
       await axios
-        .get(`http://localhost:5001/topicdoc_feedback2/${id}`)
+        .get(`http://localhost:8090/topicdoc_feedback2/${id}`)
         .then((res) => res.data)
         .then(data=>setInputs(data.Feedbacks))
            
@@ -31,7 +30,7 @@ const Sug_Topicdoc_updatefeedback = () => {
       };
       const sendRequest = async () => {
         await axios
-          .put(`http://localhost:5001/topicdoc_feedback2/${id}`, {
+          .put(`http://localhost:8090/topicdoc_feedback2/${id}`, {
             ResTopicFileGroupId: String(inputs.ResTopicFileGroupId),
             ResTopicFilePanel: String(inputs.ResTopicFilePanel),
             Feedback: String(inputs.Feedback),
@@ -42,7 +41,6 @@ const Sug_Topicdoc_updatefeedback = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
         sendRequest().then(() => history("/AllTopicDocFeedback"));
       };
     

@@ -20,7 +20,7 @@ import {
     useEffect(() => {
       const fetchHandler = async () => {
         await axios
-          .get(`http://localhost:5001/resTopicsNotice/${id}`)
+          .get(`http://localhost:8090/resTopicsNotice/${id}`)
           .then((res) => res.data)
           .then((data) => setInputs(data.resTopicsNotice));
       };
@@ -29,7 +29,7 @@ import {
   
     const sendRequest = async () => {
       await axios
-        .put(`http://localhost:5001/resTopicsNotice/${id}`, {
+        .put(`http://localhost:8090/resTopicsNotice/${id}`, {
           ResTopicNoticeHeader: String(inputs.ResTopicNoticeHeader),
           ResTopicNoticeLineOne: String(inputs.ResTopicNoticeLineOne),
           ResTopicNoticeLineTwo: String(inputs.ResTopicNoticeLineTwo),

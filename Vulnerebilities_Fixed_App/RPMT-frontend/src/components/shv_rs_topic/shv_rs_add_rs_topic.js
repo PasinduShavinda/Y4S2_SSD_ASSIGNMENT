@@ -1,17 +1,13 @@
 import {
   Button,
-  Checkbox,
-  FormControlLabel,
   FormLabel,
   TextField,
-  Typography,
 } from "@mui/material";
-import { Box, color } from "@mui/system";
-import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/system";
+import React, { useState, useEffect } from "react";
 import "./styles/shv_rs_topic.css";
 import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 const Shv_rs_add_rs_topic = () => {
   const history = useNavigate();
@@ -22,6 +18,33 @@ const Shv_rs_add_rs_topic = () => {
     ResTopicResearchTopic: ""
   });
 
+  const [csrfToken, setCsrfToken] = useState('');
+
+  async function getCsrfToken() {
+    try {
+      const response = await fetch("http://localhost:8090/getToken", {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        mode: 'cors',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch CSRF token');
+      }
+      const parsedResponse = await response.json();
+      setCsrfToken(parsedResponse.csrfToken);
+    } catch (error) {
+      console.error('Error fetching CSRF token:', error);
+    }
+  }
+
+  useEffect(() => {
+    getCsrfToken();
+  }, []);
+
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -29,41 +52,53 @@ const Shv_rs_add_rs_topic = () => {
     }));
   };
 
-  
 
   const sendRequest = async () => {
+    try {
+      const name = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
+  
+      if (inputs.ResTopicgroupId.length === 0 || inputs.ResTopicsupervisor.length === 0 || inputs.ResTopicresearchArea.length === 0 || inputs.ResTopicResearchTopic.length === 0) {
+        swal("Fields Cannot Be Empty !!", "You Must Fill All the Fields !!", "error");
+      } else if (!name.test(String(inputs.ResTopicsupervisor))) {
+        swal("Invalid Supervisor Name !", "Name cannot contain numbers ! Please enter a valid name !", "error");
+      } else {
 
-    const name = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
-
-    if(inputs.ResTopicgroupId.length == 0 || inputs.ResTopicsupervisor.length == 0 || inputs.ResTopicresearchArea.length == 0 || inputs.ResTopicResearchTopic.length == 0 ){
-      swal("Feilds Cannot Be empty !!", "You Must fill all the feilds !!", "error");
-    }else if((!name.test(String(inputs.ResTopicsupervisor)))){
-      swal("Invalid Supervisor Name !", "Name cannot contain numbers ! Please enter valid name !", "error");
-    }else{
-    await axios
-      .post("http://localhost:5001/resTopics", {
-        ResTopicgroupId: String(inputs.ResTopicgroupId),
-        ResTopicsupervisor: String(inputs.ResTopicsupervisor),
-        ResTopicresearchArea: String(inputs.ResTopicresearchArea),
-        ResTopicResearchTopic: String(inputs.ResTopicResearchTopic)
-
-      })
-      .then((res) => res.data)
-      .then(() => history("/RsTopics"));
-      
-      swal("Successful!", "Research Topic Successfully Submitted !!", "success");
+        const fetchPostResponse = await fetch(`http://localhost:8090/resTopics`, {
+          method: 'POST',
+          headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'xsrf-token': csrfToken,
+          },
+          credentials: 'include',
+          mode: 'cors',
+          body: JSON.stringify({
+            ResTopicgroupId: String(inputs.ResTopicgroupId),
+            ResTopicsupervisor: String(inputs.ResTopicsupervisor),
+            ResTopicresearchArea: String(inputs.ResTopicresearchArea),
+            ResTopicResearchTopic: String(inputs.ResTopicResearchTopic),
+          }),
+        });
+  
+        if (fetchPostResponse.ok) {
+          swal("Successful!", "Research Topic Successfully Submitted !!", "success");
+          history("/RsTopics");
+        } else {
+          throw new Error('Failed to make POST request');
+        }
+      }
+    } catch (error) {
+      console.error('Error making POST request:', error);
     }
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
     sendRequest();
   };
 
   return (
     <div>
-     
     <div className="bodyRsTopic">
     <a href="/stdHome"><button class="previous round">&#8249;</button></a>
               <center>
@@ -130,3 +165,5 @@ const Shv_rs_add_rs_topic = () => {
 };
 
 export default Shv_rs_add_rs_topic;
+
+

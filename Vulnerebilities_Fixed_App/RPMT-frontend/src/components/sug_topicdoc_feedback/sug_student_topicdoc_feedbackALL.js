@@ -1,7 +1,7 @@
 import React ,{ useEffect, useState }from 'react'
 import axios from "axios"
 import Sug_student_topicdoc_feedback from "./sug_topicdoc_feedbacks";
-const URL = `http://localhost:5001/topicdoc_feedback2`;
+const URL = `http://localhost:8090/topicdoc_feedback2`;
 
 
 const  Sug_student_AllTopicdocfeedbacks= () => {

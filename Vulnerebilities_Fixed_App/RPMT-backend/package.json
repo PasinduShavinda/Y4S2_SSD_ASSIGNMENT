@@ -5,24 +5,35 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Errhttps://github.com/PasinduShavinda/Y4S2_SSD_ASSIGNMENT/pull/8/conflict?name=Vulnerebilities_Fixed_App%252FRPMT-backend%252Fpackage-lock.json&ancestor_oid=3e0a880d02c0222e4e2d508d185bc921d539cf47&base_oid=f39cdc5642a2052cbdcd67212936bd0ec84bf98b&head_oid=6f0579a2cd7863f2a01653748295da6b7c1fe576or: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.5.1",
     "body-parser": "^1.20.2",
+    "config.ini": "^0.0.60",
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "csrf-csrf": "^3.0.1",
+    "crypto": "^1.0.1",
+    "csurf": "^1.11.0",
     "dotenv": "^16.0.1",
     "email-validator": "^2.0.4",
     "express": "^4.17.2",
     "express-rate-limit": "^7.0.2",
     "express-session": "^1.17.3",
     "mongo-sanitize": "^1.1.0",
+    "fs": "^0.0.1-security",
+    "ini": "^4.1.1",
     "mongoose": "^6.1.7",
     "multer": "^1.4.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-google-oauth2": "^0.2.0",
+    "pino": "^7.8.0",
+    "pino-pretty": "^7.5.1",
+    "send": "^0.18.0",
+    "util": "^0.12.5"
   }
 }

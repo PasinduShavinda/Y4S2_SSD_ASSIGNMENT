@@ -37,7 +37,7 @@ const UD_EditPenalmember = ({ onClick, id, formData }) => {
     }
 
     axios
-      .post(`http://localhost:5001/penal/penalmemberregister${id}`, penalmember)
+      .post(`http://localhost:8090/penal/penalmemberregister${id}`, penalmember)
       .then((res) => {
         if (res.data.message === "success") {
           setFirstName("");

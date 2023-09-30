@@ -3,7 +3,7 @@ import axios from "axios"
 import Sug_panelmembers_page from "../sug_panelmembers_page/sug_panelmembers_page"
 
 import Sug_marks from "./sug_marks";
-const URL = "http://localhost:5001/group";
+const URL = "http://localhost:8090/group";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);
@@ -13,8 +13,6 @@ const Sug_AllGroups_Mark = () => {
   useEffect(() => {
     fetchHandler().then((data) => setGroups(data.Groups));
   }, []);
-  console.log(Groups);
-
 
   return (
     <div class="py-3 ">
