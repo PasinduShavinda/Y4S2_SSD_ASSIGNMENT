@@ -13,8 +13,6 @@ const Sug_AllGroups_Mark = () => {
   useEffect(() => {
     fetchHandler().then((data) => setGroups(data.Groups));
   }, []);
-  console.log(Groups);
-
 
   return (
     <div class="py-3 ">

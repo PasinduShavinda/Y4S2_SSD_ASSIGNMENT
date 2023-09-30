@@ -40,10 +40,8 @@ const UD_AddPenalmember = (props) => {
       .post("http://localhost:8090/penal/penalmemberregister", penalmember)
       .then((res) => {
         if (res.data.message === "success") {
-          console.log(res.data);
           swal("Success", "Penalmember genarate successfully", "success");
         } else {
-          console.log(res.data);
           swal("Error", "Penalmember genarate unsuccessfully", "error");
         }
       })

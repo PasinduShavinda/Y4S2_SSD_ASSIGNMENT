@@ -49,7 +49,6 @@ const Sug_Topicdoc_addfeedback = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
         sendRequest();
       };
     

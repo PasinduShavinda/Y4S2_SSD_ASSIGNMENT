@@ -28,7 +28,6 @@ const Sug_CreatePanel = () => {
         ...prevState,
         [e.target.name]: e.target.value,
       }));
-      // console.log(e.target.name, "Value", e.target.value);
     };
   
     const sendRequest = async () => {
@@ -55,7 +54,6 @@ const Sug_CreatePanel = () => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(inputs);
       sendRequest();
     };
   

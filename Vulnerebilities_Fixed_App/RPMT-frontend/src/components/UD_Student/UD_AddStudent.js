@@ -40,10 +40,8 @@ const UD_AddStudent = (props) => {
       .post("http://localhost:8090/auth/register", user)
       .then((res) => {
         if (res.data.message === "success") {
-          console.log(res.data);
           swal("Success", "student generate successfully", "success");
         } else {
-          console.log(res.data);
           swal("Error", "student generate unsuccessfully", "error");
         }
       })

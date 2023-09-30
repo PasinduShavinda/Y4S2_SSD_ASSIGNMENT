@@ -13,7 +13,6 @@ const Sug_AllThesisdocfeedbacks = () => {
   useEffect(() => {
     fetchHandler().then((data) => setfeedbacks(data.Feedbacks));
   }, []);
-  console.log(Feedbacks);
 
 
   return (<div>

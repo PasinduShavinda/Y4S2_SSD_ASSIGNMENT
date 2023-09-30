@@ -14,10 +14,6 @@ const Sug_AllPanels = () => {
   useEffect(() => {
     fetchHandler().then((data) => setPanels(data.panels));
   }, []);
-  console.log(panels);
-
-
-
   
   return (
     <div>

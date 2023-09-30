@@ -94,7 +94,6 @@ const Shv_rs_add_rs_topic = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
     sendRequest();
   };
 

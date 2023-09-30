@@ -42,7 +42,6 @@ const Sug_thesis_updatefeedback = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
         sendRequest().then(() => history("/AllThesisFeedback"));
       };
     

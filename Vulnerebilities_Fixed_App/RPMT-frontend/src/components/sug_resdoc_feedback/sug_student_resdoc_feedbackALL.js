@@ -11,9 +11,6 @@ const Sug_student_resdoc_feedbackALL = () => {
     axios.get(URL).then((res) => res.data).then((data) => setfeedbacks(data.Feedbacks));
   }, []);
 
-  console.log(Feedbacks);
-
-
 
   const [filterText, setFilterText] = useState("");
 

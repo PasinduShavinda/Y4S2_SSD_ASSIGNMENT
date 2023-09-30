@@ -56,7 +56,6 @@ const Sug_GroupID_and_Panel_Assign = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
         sendRequest();
       };
    

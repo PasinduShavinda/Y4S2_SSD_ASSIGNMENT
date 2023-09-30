@@ -65,7 +65,7 @@ app.use(
     store: new MongoConnect({ mongoUrl: config.DB_CONNECTION_STRING }),
     cookie: {
       secure: false,
-      expires: new Date(Date.now() + 10000),
+      expires: new Date(Date.now() + 1000000),
       maxAge: 1000000,
     },
   })
@@ -79,16 +79,11 @@ app.get('/getToken', csrfProtection, function (req, res) {
   res.send({csrfToken: req.csrfToken() })
 });
 
-app.get("/g-auth", (req, res, next) => {
-  res.send(`<a href="/auth/google">Login with Google</a>`);
-  next();
-});
-
 app.listen(PORT, () => {
   logger.info(`🚀 Server is up and running on PORT ${PORT}`);
   googleAuth(passport);
   g_auth_routes(app, passport);
-  app.use("/resTopics",parseForm, csrfProtection, router1); 
+  app.use("/resTopics", parseForm, csrfProtection, router1);
   app.use("/resTopicsNotice", router2);
   app.use(router3);
   app.use(router4);

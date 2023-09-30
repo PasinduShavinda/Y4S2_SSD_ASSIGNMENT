@@ -2,28 +2,35 @@ import React, { useEffect, useState } from "react";
 import "./styles/shv_rs_topic.css";
 import axios from "axios";
 import Shv_rs_topic from "./shv_rs_topic_student";
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-
+import swal from 'sweetalert';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 const URL = "http://localhost:8090/resTopics";
 
-const fetchHandler = async () => {
-  return await axios.get(URL).then((res) => res.data);
-};
+const axiosInstance = axios.create({
+  baseURL: URL,
+  withCredentials: true, // Send cookies with the request
+});
+
 const Shv_rs_topics = () => {
-  
   const [resTopics, setresTopics] = useState();
 
   useEffect(() => {
-  
-    fetchHandler().then((data) => setresTopics(data.resTopics));
-  
+    axiosInstance
+      .get("/")
+      .then((res) => res.data)
+      .then((data) => setresTopics(data.resTopics))
+      .catch((error) => {
+        if (error.response && error.response.status === 401) {
+          swal("Unauthorized!", "Please log in to continue.", "error");
+        } else {
+          swal("Error!", "An error occurred. Please try again later.", "error");
+        }
+        console.error(error);
+      });
   }, []);
-  
-  console.log(resTopics);
-
 
   const StyledTableCell = withStyles((theme) => ({
   

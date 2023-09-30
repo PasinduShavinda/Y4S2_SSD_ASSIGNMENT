@@ -12,8 +12,6 @@ const Th_AllGroups = () => {
   useEffect(() => {
     fetchHandler().then((data) => setGroups(data.Groups));
   }, []);
-  console.log(Groups);
-
 
   return (
     <div id="sug_table"> <ul>

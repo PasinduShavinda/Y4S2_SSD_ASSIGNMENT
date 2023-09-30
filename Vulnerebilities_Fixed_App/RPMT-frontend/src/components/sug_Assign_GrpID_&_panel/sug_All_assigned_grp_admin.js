@@ -12,7 +12,6 @@ const Sug_AllGroups_admin = () => {
   useEffect(() => {
     fetchHandler().then((data) => setGroups(data.Groups));
   }, []);
-  console.log(Groups);
 
 
   return (

@@ -19,8 +19,6 @@ const Shv_res_topic_notices_student = () => {
   
   }, []);
   
-  console.log(resTopicsNotices);
-  
   return (
     <div>
       <ul className="shv_ul" >

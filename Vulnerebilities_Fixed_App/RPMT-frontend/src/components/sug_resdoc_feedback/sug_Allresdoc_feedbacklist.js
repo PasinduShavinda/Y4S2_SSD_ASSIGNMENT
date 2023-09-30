@@ -13,8 +13,6 @@ const Sug_AllResdocfeedbacks = () => {
   useEffect(() => {
     fetchHandler().then((data) => setfeedbacks(data.Feedbacks));
   }, []);
-  console.log(Feedbacks);
-
 
   return (
     <div class="py-5 h-100">

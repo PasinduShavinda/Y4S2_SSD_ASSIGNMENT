@@ -22,8 +22,6 @@ const Shv_rs_topics_supervisor = () => {
   
   }, []);
   
-  console.log(resTopics);
-
 
   const StyledTableCell = withStyles((theme) => ({
     head: {

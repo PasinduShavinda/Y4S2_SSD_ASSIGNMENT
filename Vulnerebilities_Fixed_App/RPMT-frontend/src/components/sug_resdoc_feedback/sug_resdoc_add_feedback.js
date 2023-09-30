@@ -43,7 +43,6 @@ const Sug_Resdoc_addfeedback = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
         sendRequest().then(() => history("/AllResDocFeedback"));
       };
     

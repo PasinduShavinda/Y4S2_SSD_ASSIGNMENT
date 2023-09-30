@@ -11,11 +11,6 @@ import axios from "axios";
 import "./UD_MangeStudent.css";
 import EditStudent from "./UD_EditStudent";
 
-//--------------pdf-------------------------------------
-// import jsPDF from "jspdf";
-// import "jspdf-autotable";
-// import imageUrl from "../../assets/2.jpg";
-
 const UD_ManageStudent = (props) => {
   const [users, setUsers] = useState([]);
   const [edit, setEdit] = useState(false);
@@ -24,20 +19,6 @@ const UD_ManageStudent = (props) => {
 
   //search..........................
   const [filterText, setFilterText] = useState("");
-
-  //.....Delete..............
-  // const deleteData = (e) => {
-  //   try {
-  //     axios
-  //       .delete(`http://localhost:8090/auth/register${e.target.value}`)
-  //       .then((res) => {
-  //         swal("Success", "Deleted Successfully", "success");
-  //       });
-  //   } catch (error) {
-  //     swal("Error", "Deletion Failed", "error");
-  //   }
-  //   console.log(e.target.value);
-  // };
 
   const deleteData = (e) => {
     swal({
@@ -257,11 +238,6 @@ const UD_ManageStudent = (props) => {
           >
             Previous
           </div>
-
-          {/* <button className="ud_MStudent_Pdf_Button" onClick={downloadPdf}>
-            Downloard PDF
-          </button> */}
-          {/* </div> */}
         </div>
       )}
     </>

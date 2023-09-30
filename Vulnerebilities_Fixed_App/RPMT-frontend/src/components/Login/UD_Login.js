@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./UD_Login.css";
 import LoginImg from "../../assets/login_left.png";
-import { Link, useNavigate } from "react-router-dom";
-// import Navbar from "../Navbar/Navbar";
-// import Footer from "../Footer/Footer";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
-// useHistory  = useNavigate,
-//Redirect = Navigate
-// const navigate = useNavigate();
-// navigate("/home");
-const UD_Login = () => {
-  let navigate = useNavigate();
-  //let history = useNavigate();
 
+const UD_Login = () => {
+
+  let navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,11 +25,9 @@ const UD_Login = () => {
           var currentUser = res.data.data;
           if (currentUser.type === "admin") {
             localStorage.setItem("user-info-admin", currentUser);
-            //history.push("/dashboard");
             navigate("/dashboard");
           } else {
             localStorage.setItem("user-info-customer", currentUser);
-            // history.push("/stdHome", { currentUser });
             navigate("/stdHome", { currentUser });
           }
         } else {
@@ -44,6 +37,13 @@ const UD_Login = () => {
       .catch((error) => {
         swal("Sorry", error.response.data.error, "error");
       });
+  };
+
+  // Handle the google login button
+
+  const handleGoogleLoginClick = () => {
+    // Redirect to the Google OAuth login page
+    window.location.href = 'http://localhost:8090/auth/google'; 
   };
 
   return (
@@ -65,7 +65,12 @@ const UD_Login = () => {
                 className="passwordInput"
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <br></br>
+              <button className="UDSDbtn" onClick={handleGoogleLoginClick}>
+                Login
+              </button>
             </div>
+            
             <div className="UDSDbtngroup">
               <button className="UDSDbtn" onClick={Login}>
                 Login

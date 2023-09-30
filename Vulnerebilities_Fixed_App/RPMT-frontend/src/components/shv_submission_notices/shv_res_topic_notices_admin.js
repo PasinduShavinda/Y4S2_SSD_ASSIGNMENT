@@ -16,9 +16,8 @@ const Shv_res_topic_notices_admin = () => {
     fetchHandler().then((data) => setresTopicsNotices(data.resTopicsNotices));
   
   }, []);
-  
-  console.log(resTopicsNotices);
-  
+
+
   return (
     <div>
       <ul className="shv_ul">

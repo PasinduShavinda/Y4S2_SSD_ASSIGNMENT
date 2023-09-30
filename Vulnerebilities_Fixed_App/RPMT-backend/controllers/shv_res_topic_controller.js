@@ -1,17 +1,16 @@
 const ResTopics = require("../model/shv_res_topic_model");
 
 const getAllResTopics = async (req, res, next) => {
-  let resTopics;
   try {
-    resTopics = await ResTopics.find();
+    const resTopics = await ResTopics.find();
+    if (!resTopics) {
+      return res.status(404).json({ message: "No research topics found" });
+    }
+    return res.status(200).json({ resTopics });
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return res.status(500).json({ message: "Internal server error" });
   }
-
-  if (!resTopics) {
-    return res.status(404).json({ message: "Not Research topics found" });
-  }
-  return res.status(200).json({ resTopics });
 };
 
 const getResTopicsById = async (req, res, next) => {

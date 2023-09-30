@@ -1,4 +1,3 @@
-const { authenticate } = require("../middleware/auth.middleware");
 
 module.exports = function (app, passport) {
   app.get("/auth/google", passport.authenticate("google", { scope: ["email", "profile"] }));
@@ -11,14 +10,11 @@ module.exports = function (app, passport) {
     })
   );
   app.get("/auth/google/success", (req, res) => {
-    return res.send("Login success");
+    const frontendRedirectUrl = "http://localhost:3000/stdHome";
+    res.redirect(`${frontendRedirectUrl}?success=true`);
   });
   app.get("/auth/google/failure", (req, res) => {
-    return res.send("Authentication failed");
-  });
-
-  app.get("/test", authenticate, (req, res) => {
-    console.log(req.isAuthenticated());
-    res.send("<h1>User is authenticated</h1>");
+    const frontendRedirectUrl = "http://localhost:3000/login";
+    res.redirect(`${frontendRedirectUrl}?success=true`);
   });
 };

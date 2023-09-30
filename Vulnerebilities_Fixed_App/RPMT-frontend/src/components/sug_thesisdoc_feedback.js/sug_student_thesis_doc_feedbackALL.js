@@ -10,10 +10,6 @@ const Sug_student_AllThesisdocfeedbacks = () => {
   useEffect(() => {
     axios.get(URL).then((res) => res.data).then((data) => setfeedbacks(data.Feedbacks));
   }, []);
-  console.log(Feedbacks);
-
-
-
 
   const [filterText, setFilterText] = useState("");
 

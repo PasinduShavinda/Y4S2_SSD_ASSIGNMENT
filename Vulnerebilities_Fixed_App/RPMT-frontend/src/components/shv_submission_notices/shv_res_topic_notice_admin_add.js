@@ -51,7 +51,6 @@ import {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(inputs);
       sendRequest();
     };
   
