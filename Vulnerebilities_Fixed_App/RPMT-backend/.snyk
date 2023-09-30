@@ -1,0 +1,130 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - config.ini > npm > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > npm-registry-fetch > make-fetch-happen >
+          https-proxy-agent
+    - config.ini > npm > pacote > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: config.ini > npm > pacote > make-fetch-happen > https-proxy-agent
+    - config.ini > npm > pacote > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > pacote > npm-registry-fetch > make-fetch-happen >
+          https-proxy-agent
+    - config.ini > npm > libnpmaccess > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpmaccess > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpmhook > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpmhook > npm-registry-fetch > make-fetch-happen
+          > https-proxy-agent
+    - config.ini > npm > libnpmorg > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpmorg > npm-registry-fetch > make-fetch-happen
+          > https-proxy-agent
+    - config.ini > npm > libnpmsearch > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpmsearch > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpmteam > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpmteam > npm-registry-fetch > make-fetch-happen
+          > https-proxy-agent
+    - config.ini > npm > npm-profile > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > npm-profile > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpm > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > npm-registry-fetch > make-fetch-happen >
+          https-proxy-agent
+    - config.ini > npm > libcipm > pacote > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libcipm > pacote > make-fetch-happen >
+          https-proxy-agent
+    - config.ini > npm > libnpm > pacote > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > pacote > make-fetch-happen >
+          https-proxy-agent
+    - config.ini > npm > libcipm > pacote > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libcipm > pacote > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpm > pacote > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > pacote > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpm > libnpmaccess > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > libnpmaccess > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpm > libnpmhook > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > libnpmhook > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpm > libnpmorg > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > libnpmorg > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpm > libnpmpublish > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > libnpmpublish > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpm > libnpmsearch > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > libnpmsearch > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpm > libnpmteam > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > libnpmteam > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
+    - config.ini > npm > libnpm > npm-profile > npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2023-09-30T15:19:04.908Z'
+        id: SNYK-JS-HTTPSPROXYAGENT-469131
+        path: >-
+          config.ini > npm > libnpm > npm-profile > npm-registry-fetch >
+          make-fetch-happen > https-proxy-agent
