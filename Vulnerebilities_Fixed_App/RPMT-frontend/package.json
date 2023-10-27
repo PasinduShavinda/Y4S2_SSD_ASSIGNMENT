@@ -11,7 +11,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.25.0",
+    "axios": "^1.6.0",
     "bootstrap": "^4.5.2",
     "dompurify": "^3.0.5",
     "downloadjs": "^1.4.7",
